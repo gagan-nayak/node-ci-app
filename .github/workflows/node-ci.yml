@@ -1,32 +1,30 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+ push:
+   branches: [ main ]
+ pull:
+   branches: [ main ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+ build-and-test:
+  runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
+  strategy:
+   matrix:
+    node-version: [18.x, 20.x]
 
-    steps:
-      - name: � Checkout code
-        uses: actions/checkout@v3
+  steps:
+   - name: Checkout Code
+     uses: actions/checkout@v3
 
-      - name: � Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+   - name: Setup Node.js
+     uses: actions/setup-node@v3
+     with:
+       node-version: ${{ matrix.node-version }}
 
-      - name: � Install dependencies
-        run: npm install
+   - name: Install Depencencies
+     run: npm install
 
-      - name: Run tests
-        run: npm test
-
-
+   - name: Run Tests
+     run: npm test
